@@ -31,7 +31,6 @@ function getGoods() {
             .then(data => {
                 const array = category ? data.filter((item) => item[category] === value) : data;
                 localStorage.setItem('goods', JSON.stringify(array));
-                console.log(array);
 
                 if (window.location.pathname !== '/goods.html') {
                     window.location.href = '/goods.html';
@@ -53,11 +52,10 @@ function getGoods() {
     if(window.location.pathname === '/index.html'){
         viewAll.addEventListener('click', event=>{
             event.preventDefault();
-            getData('All', false);
+            getData();
         });
     }
    
-
     if (JSON.parse(localStorage.getItem('goods')) && window.location.pathname === '/goods.html') {
         renderGoods(JSON.parse(localStorage.getItem('goods')));
     }
